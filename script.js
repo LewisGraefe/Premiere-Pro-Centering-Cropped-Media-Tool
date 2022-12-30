@@ -51,25 +51,31 @@ function generateValue() {
 //   }
 // }
 
-// From https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
 // Execute a function when the user presses a key on the keyboard
 addEventListener("keyup", function(event) {
+
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
+
     // Cancel the default action, if needed
     event.preventDefault();
+
     // Trigger the button element with a click
     document.getElementById("generateValue").click();
     var inputField = document.getElementById("output-left-right");
+
     // Move to the result input and select the text
     inputField.focus();
     inputField.select();
-  }
-    if (event.key === "Escape") {
+
+  } else if (event.key === "Escape") {
+
     // Cancel the default action, if needed
     event.preventDefault();
+
     var inputField = document.getElementById("left");
-    // Move to the result input and select the text
+    
+    // Move to the first input and select the text
     inputField.focus();
     inputField.select();
   }
