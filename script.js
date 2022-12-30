@@ -1,3 +1,57 @@
+function generateAllValues() {
+
+  // Get the values from the input elements and convert them to numbers
+  const width = parseInt(document.getElementById("width").value);
+  const height = parseInt(document.getElementById("height").value);
+  const posX = parseInt(document.getElementById("posX").value);
+  const posY = parseInt(document.getElementById("posY").value);
+
+  // Get the input from the input textarea and split it by new lines
+  const input = document.getElementById("left").value.split("\n");
+
+  // Initialize an empty array to store the results for each line
+  const results = [];
+
+  // Iterate over the array of strings
+  for (const line of input) {
+
+    // Check if the line does not match the expected format
+    if (!/^left:\s\d+\sright:\s\d+\stop:\s\d+\sbottom:\s\d+$/.test(line)) {
+      alert("Input must be in correct format");
+      return;
+    }
+    // Split the string by spaces and assign the values to variables
+    const [leftString, rightString, topString, bottomString] = line.split(/[^\d.]+/).slice(1);
+
+    // Convert the values to numbers
+    const left = parseInt(leftString);
+    const right = parseInt(rightString);
+    const top = parseInt(topString);
+    const bottom = parseInt(bottomString);
+
+    // Check if left, right, top or bottom are not a valid number
+    if (isNaN(left) || isNaN(right) || isNaN(top) || isNaN(bottom) || isNaN(width) || isNaN(height) || isNaN(posX) || isNaN(posY)) {
+      alert("Please enter valid numbers for all fields.");
+      return;
+    }
+
+    // Calculate the values for the "left" and "right" properties
+    const leftRight = posX - (left / 100 * width - (left / 100 * width + right / 100 * width) / 2);
+
+    const topBottom = posY - (top / 100 * height - (top / 100 * height + bottom / 100 * height) / 2);
+
+    // Round the values to 2 decimal places
+    const leftRightRounded = leftRight.toFixed(2);
+    const topBottomRounded = topBottom.toFixed(2);
+
+    results.push(`${Number(leftRightRounded)} ${Number(topBottomRounded)}`);
+  }
+
+  // Set the output textarea value to the results array joined by new lines
+  document.getElementById("output-left-right").value = results.join("\n");
+
+}
+
 function generateValue() {
   // Get the values from the input elements and convert them to numbers
   const left = parseInt(document.getElementById("left").value) || 0;
@@ -21,9 +75,13 @@ function generateValue() {
   // Calculate the values for the "top" and "bottom" properties
   const topBottom = posY - (top / 100 * height - (top / 100 * height + bottom / 100 * height) / 2)
 
+  // Round the values to 2 decimal places
+  const leftRightRounded = leftRight.toFixed(2);
+  const topBottomRounded = topBottom.toFixed(2);
+
   // Set the output values
-  document.getElementById("output-left-right").value = leftRight;
-  document.getElementById("output-top-bottom").value = topBottom;
+  document.getElementById("output-left-right").value = Number(leftRightRounded);
+  document.getElementById("output-top-bottom").value = Number(topBottomRounded);
 
 }
 
@@ -52,7 +110,7 @@ function generateValue() {
 // }
 
 // Execute a function when the user presses a key on the keyboard
-addEventListener("keyup", function(event) {
+addEventListener("keydown", function(event) {
 
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
@@ -74,47 +132,9 @@ addEventListener("keyup", function(event) {
     event.preventDefault();
 
     var inputField = document.getElementById("left");
-    
+
     // Move to the first input and select the text
     inputField.focus();
     inputField.select();
   }
 });
-
-function generateAllValues() {
-  // Get the values from the input elements
-  var input = document.getElementById("input").value;
-  var width = document.getElementById("width").value;
-  var height = document.getElementById("height").value;
-  var output = document.getElementById("output");
-
-  // Split the input into an array of lines
-  var lines = input.split("\n");
-
-  // Initialize an empty array to store the output values
-  var values = [];
-
-  // Iterate through each line in the input
-  for (var i = 0; i < lines.length; i++) {
-    // Split the line into an array of values
-    var lineValues = lines[i].split(/\s+/);
-
-    // Get the left, right, top, and bottom values
-    var left = lineValues[1];
-    var right = lineValues[3];
-    var top = lineValues[5];
-    var bottom = lineValues[7];
-
-    // Calculate the left/right value
-    var valueLeftRight = 960 - (left / 100 * width - (left / 100 * width + right / 100 * width) / 2);
-
-    // Calculate the top/bottom value
-    var valueTopBottom = 540 - (top / 100 * height - (top / 100 * height + bottom / 100 * height) / 2);
-
-    // Add the calculated values to the output array
-    values.push(valueLeftRight.toFixed(2) + " " + valueTopBottom.toFixed(2));
-  }
-
-  // Join the values in the output array into a single string with newlines
-  output.value = values.join("\n");
-}

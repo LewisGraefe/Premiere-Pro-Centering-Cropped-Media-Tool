@@ -43,11 +43,6 @@ button {
 }
 
 #footer {
-  position: fixed;
   bottom: 0;
   width: 100%;
-}
-
-.generate-value-button {
-  width: 250px;
 }

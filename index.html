@@ -13,7 +13,7 @@
       href="https://medium.com/@azlaniqbal/centering-cropped-images-or-video-using-adobe-premiere-pro-c9d24c71cb05"
       target="_blank">this blog post</a>.</div>
   <div style="font-size: 14px; margin-bottom: 20px;">Enter your percentages of crop here. Leave blank for 0.</div>
-  
+
   <form onsubmit="return false;">
     <div style="display: flex; flex-direction: row; align-items: center;">
       <div style="display: flex; flex-direction: column; align-items: center;">
@@ -46,13 +46,18 @@
     <div style="font-size: 14px; margin: 10px 0 10px 0;">Use tab to move to the next field. Use enter to generate the
       value. Use escape to return to the first field.</div>
   </form>
-  <button tabindex="9" id="generateValue" onclick="generateValue()" style="width: 150px;">Generate Value</button>
+  <button tabindex="9" id="generateValue" onclick="generateValue()" style="width: 250px;">Generate Value</button>
   <br><br>
   <div style="font-size: 14px; margin-bottom: 10px;">Copy these and put them into Position inputs of your cropped media
   </div>
   <input type="text" id="output-left-right" readonly tabindex="10" class="output">
   <input type="text" id="output-top-bottom" readonly tabindex="11" class="output">
+  <br>
+  <br>
+  <button tabindex="12" style="width: 250px;" onclick="window.location.href='batch.html'">Batch Mode</button>
 
+  <br>
+  <br>
   <div id="footer" style="font-size: 14px; text-align: center;">Created by Lewis Graefe</div>
 
   <!--   <form onsubmit="return false;">

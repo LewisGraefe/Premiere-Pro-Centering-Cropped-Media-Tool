@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <h2 style="margin-bottom: 20px;">Premiere Pro Centering Cropped Media Tool</h2>
+  <div style="font-size: 14px; margin-bottom: 20px;">Trying to center cropped media in Premiere Pro is quite annoying,
+    this tool simplifies things. Created based on <a
+      href="https://medium.com/@azlaniqbal/centering-cropped-images-or-video-using-adobe-premiere-pro-c9d24c71cb05"
+      target="_blank">this blog post</a>.</div>
+  <div style="font-size: 14px; margin: 10px 0 20px 0;">Use tab to move to the next field. Use enter to generate all
+    values. Use escape to return to the Input field.</div>
+
+  <form onsubmit="return false;">
+    <div style="display: flex; flex-direction: row; align-items: center;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <label for="width">Sequence Width:</label>
+        <input type="number" id="width" name="width" value="1920" style="margin-bottom: 10px;" tabindex="1">
+        <label for="posX">Media Position X:</label>
+        <input type="number" id="posX" name="posX" value="960" style="margin-bottom: 10px;" tabindex="3">
+      </div>
+      <div style=" display: flex; flex-direction: column; align-items: center;">
+        <label for="height">Sequence Height:</label>
+        <input type="number" id="height" name="height" value="1080" style="margin-bottom: 10px;" tabindex="2">
+        <label for="posY">Media Position Y:</label>
+        <input type="number" id="posY" name="posY" value="540" style="margin-bottom: 10px;" tabindex="4">
+      </div>
+    </div>
+  </form>
+
+  <form onsubmit="return false;">
+    <label for="input">Input:</label>
+    <div style="font-size: 14px; margin: 5px 0 -5px 0;">Seperate by newline. Format: <br>left: a right: b top: c bottom:
+      d</div>
+    <br>
+    <textarea id="left" name="input" tabindex="5" rows="10" cols="50"></textarea>
+    <br>
+    <button type="button" style="width: 250px;" id="generateValue" tabindex="6" onclick="generateAllValues()">Generate
+      All
+      Values</button>
+    <br>
+    <label for="output">Output:</label><br>
+    <textarea id="output-left-right" name="output" tabindex="7" rows="10" cols="50" readonly></textarea>
+    <br>
+    <button tabindex="8" style="width: 250px;" onclick="window.location.href='index.html'">Back to Individual</button>
+    <br>
+  </form>
+  <div id="footer" style="font-size: 14px; text-align: center;">Created by Lewis Graefe</div>
+
+</body>
+
+</html>
