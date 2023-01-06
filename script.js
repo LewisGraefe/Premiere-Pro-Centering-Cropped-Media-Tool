@@ -69,6 +69,18 @@ function generateValue() {
     return;
   }
 
+  // Check if width, height, posX, or posY are negative numbers
+  if (width < 0 || height < 0 || posX < 0 || posY < 0) {
+    alert("Please enter positive numbers for the Sequence and Media Position fields.");
+    return;
+  }
+
+  // Check if the posX or posY values are greater than the width or height values
+  if (posX > width || posY > height) {
+    alert("Please enter numbers smaller than the Sequence Width and Sequence Height.");
+    return;
+  }
+
   // Calculate the values for the "left" and "right" properties
   const leftRight = posX - (left / 100 * width - (left / 100 * width + right / 100 * width) / 2)
 
